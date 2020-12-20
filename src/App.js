@@ -1,10 +1,12 @@
 import Global from './themes/global';
 
+import { Main } from './pages';
+
 function App() {
   return (
     <>
       <Global />
-      <h1>Hello World</h1>
+      <Main />
     </>
   );
 }

@@ -14,10 +14,18 @@ export default createGlobalStyle`
 body {
   overflow: hidden;
 
+  color: #fff;
+  font-weight: 500;
   background-color: #D1CFCA;
   background-size: 100% auto;
   background-repeat: no-repeat;
   background-position: center top;
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
   background-image: url(${background});
+}
+
+button {
+  cursor: pointer;
 }
 `;
