@@ -1,5 +1,12 @@
+import Global from './themes/global';
+
 function App() {
-  return <h1>Hello World</h1>
+  return (
+    <>
+      <Global />
+      <h1>Hello World</h1>
+    </>
+  );
 }
 
-export default App
+export default App;
