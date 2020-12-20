@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
 export const Container = styled.header`
   width: 100%;
@@ -37,4 +38,23 @@ export const Container = styled.header`
       }
     }
   }
+
+  ${media.lessThan('large')`
+    ul {
+      li {
+        svg {
+          margin-right: 4px;
+        }
+
+        p {
+          font-size: 12px;
+          font-weight: 200;
+        }
+
+        h2 {
+          font-size: 12px;
+        }
+      }
+    }
+  `}
 `;

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
 export const Container = styled.section`
   width: 90%;
@@ -8,18 +9,36 @@ export const Container = styled.section`
   display: grid;
   grid-gap: 80px;
   grid-template-columns: 1fr 1fr;
+  grid-template-areas: 'one two';
 
   backdrop-filter: blur(6px);
   background-color: rgba(0, 0, 0, 0.4);
+
+  ${media.lessThan('large')`
+    height: 90%;
+    padding: 20px;
+
+    grid-gap: 0;
+    grid-template-columns: 100%;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+    "one"
+    "two";
+  `}
 `;
 
 export const LeftWrapper = styled.div`
   width: 100%;
 
   display: flex;
+  grid-area: one;
   align-items: center;
   flex-direction: column;
   justify-content: center;
+
+  ${media.lessThan('large')`
+
+  `}
 `;
 
 export const Temperature = styled.div`
@@ -53,6 +72,29 @@ export const Temperature = styled.div`
     font-size: 25px;
     font-weight: 200;
   }
+
+  ${media.lessThan('large')`
+    padding: 20px 0;
+    margin-top: 10px;
+
+      h1 {
+      font-size: 60px;
+
+      small {
+        font-size: 20px;
+      }
+    }
+
+    h3 {
+      margin: 4px 0;
+
+      font-size: 16px;
+    }
+
+    h2 {
+      font-size: 20px;
+    }
+  `}
 `;
 
 export const Climate = styled.ul`
@@ -77,12 +119,28 @@ export const Climate = styled.ul`
       font-weight: 200;
     }
   }
+
+  ${media.lessThan('large')`
+    li {
+      p {
+        margin-bottom: 0;
+
+        font-size: 16px;
+      }
+
+      > h2 {
+        font-size: 16px;
+      }
+    }
+  `}
 `;
 
 export const RightWrapper = styled.div`
   width: 100%;
+  height: 100%;
 
   display: flex;
+  grid-area: two;
   align-items: center;
   flex-direction: column;
 
@@ -95,7 +153,12 @@ export const RightWrapper = styled.div`
     justify-content: center;
 
     img {
-      max-height: 60%;
+      width: 60%;
     }
   }
+
+  ${media.lessThan('large')`
+    justify-content: center;
+    flex-direction: column-reverse;
+  `}
 `;

@@ -8,7 +8,7 @@ const Header = () => {
     {
       label: 'Umidade:',
       value: '69%',
-      icon: <FiDroplet color="#81FED2" size={30} />,
+      icon: <FiDroplet color="#16c5bf" size={30} />,
     },
     {
       label: 'Vento:',

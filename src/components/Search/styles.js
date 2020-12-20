@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
 export const Container = styled.header`
   display: flex;
@@ -36,4 +37,10 @@ export const Container = styled.header`
 
     background: #16c5bf;
   }
+
+  ${media.lessThan('large')`
+    input {
+      min-width: 60%;
+    }
+  `}
 `;
