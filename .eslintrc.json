@@ -25,10 +25,13 @@
       "prettier"
   ],
   "rules": {
+    "no-alert":"off",
+    "camelcase": "off",
     "no-unused-vars": "warn",
+    "react/prop-types": "off",
     "prettier/prettier": "error",
-    "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/rules-of-hooks": "error",
     "import/prefer-default-export": "off",
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".jsx"] }]

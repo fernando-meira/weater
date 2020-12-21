@@ -1,12 +1,15 @@
 import Global from './themes/global';
 
 import { Main } from './pages';
+import AppProvider from './hooks';
 
 function App() {
   return (
     <>
       <Global />
-      <Main />
+      <AppProvider>
+        <Main />
+      </AppProvider>
     </>
   );
 }

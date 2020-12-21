@@ -13,50 +13,55 @@ import {
   RightWrapper,
 } from './styles';
 
-const Wrapper = () => (
-  <Container>
-    <LeftWrapper>
-      <Search />
+const Wrapper = ({ climateData }) => {
+  return (
+    <Container>
+      <LeftWrapper>
+        <Search />
 
-      <Temperature>
-        <h1>
-          3<small>ºC</small>
-        </h1>
+        <Temperature>
+          <h1>
+            {climateData?.main?.temp}
+            <small>ºC</small>
+          </h1>
 
-        <h3>Nevando</h3>
+          {/* <h3>{weather[0].description}</h3> */}
 
-        <h2>Itapetininga, SP</h2>
-      </Temperature>
+          <h2>
+            {climateData?.name}, {climateData?.sys?.country}
+          </h2>
+        </Temperature>
 
-      <Climate>
-        <li>
-          <p>S. térmica:</p>
+        <Climate>
+          <li>
+            <p>S. térmica:</p>
 
-          <h2>2ºC</h2>
-        </li>
+            <h2>2ºC</h2>
+          </li>
 
-        <li>
-          <p>Mínima:</p>
+          <li>
+            <p>Mínima:</p>
 
-          <h2>2ºC</h2>
-        </li>
+            <h2>{climateData?.main?.temp_min}ºC</h2>
+          </li>
 
-        <li>
-          <p>Máxima:</p>
+          <li>
+            <p>Máxima:</p>
 
-          <h2>12ºC</h2>
-        </li>
-      </Climate>
-    </LeftWrapper>
+            <h2>{climateData?.main?.temp_max}ºC</h2>
+          </li>
+        </Climate>
+      </LeftWrapper>
 
-    <RightWrapper>
-      <Header />
+      <RightWrapper>
+        <Header />
 
-      <div>
-        <img src={Snow} alt="snow" />
-      </div>
-    </RightWrapper>
-  </Container>
-);
+        <div>
+          <img src={Snow} alt="snow" />
+        </div>
+      </RightWrapper>
+    </Container>
+  );
+};
 
 export default Wrapper;
