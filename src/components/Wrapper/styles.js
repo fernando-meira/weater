@@ -137,28 +137,50 @@ export const Climate = styled.ul`
 
 export const RightWrapper = styled.div`
   width: 100%;
-  height: 100%;
 
   display: flex;
   grid-area: two;
   align-items: center;
   flex-direction: column;
+  justify-content: space-evenly;
 
   > div {
     width: 100%;
-    height: 100%;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    img {
-      width: 60%;
+    > img {
+      width: auto;
+      max-width: 300px;
     }
   }
 
   ${media.lessThan('large')`
-    justify-content: center;
     flex-direction: column-reverse;
+    justify-content: space-between;
+
+    > div {
+      width: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      > img {
+        width: auto;
+        max-width: 220px;
+      }
+    }
+  `}
+
+  ${media.lessThan('medium')`
+    > div {
+      > img {
+        width: auto;
+        max-width: 150px;
+      }
+    }
   `}
 `;
