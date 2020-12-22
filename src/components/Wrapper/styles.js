@@ -153,7 +153,7 @@ export const RightWrapper = styled.div`
 
     > img {
       width: auto;
-      max-width: 300px;
+      max-width: 250px;
     }
   }
 
