@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import swal from 'sweetalert';
 
 import api from '../../services';
 import { Wrapper } from '../../components';
@@ -26,7 +27,11 @@ const Main = () => {
 
         setClimateData(data);
       } catch (error) {
-        console.log(error);
+        swal(
+          'Opa, algo de errado!',
+          'Se o erro persistir contate-nos!',
+          'error',
+        );
       }
     },
     [paramsToFetch],
