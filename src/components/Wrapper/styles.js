@@ -30,14 +30,59 @@ export const Container = styled.section`
 export const LeftWrapper = styled.div`
   width: 100%;
 
-  display: flex;
+  display: grid;
   grid-area: one;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
+  grid-template-rows: 60px 1fr;
 
   ${media.lessThan('large')`
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  `}
+`;
 
+export const Search = styled.header`
+  display: flex;
+  align-items: center;
+
+  input {
+    height: 40px;
+    border: none;
+    padding: 10px;
+    min-width: 300px;
+    margin-right: 20px;
+    border-radius: 10px;
+
+    flex: 1;
+
+    color: #fff;
+    font-size: 16px;
+    background: #c4c4c4;
+
+    ::placeholder {
+      color: #fff;
+    }
+  }
+
+  button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #16c5bf;
+  }
+
+  ${media.lessThan('large')`
+    input {
+      min-width: 60%;
+    }
   `}
 `;
 
@@ -66,6 +111,7 @@ export const Temperature = styled.div`
 
     font-size: 20px;
     font-weight: 200;
+    text-transform: capitalize;
   }
 
   h2 {
@@ -138,11 +184,9 @@ export const Climate = styled.ul`
 export const RightWrapper = styled.div`
   width: 100%;
 
-  display: flex;
+  display: grid;
   grid-area: two;
-  align-items: center;
-  flex-direction: column;
-  justify-content: space-evenly;
+  grid-template-rows: 60px 1fr;
 
   > div {
     width: 100%;
@@ -158,6 +202,10 @@ export const RightWrapper = styled.div`
   }
 
   ${media.lessThan('large')`
+    display: flex;
+
+    align-items: center;
+
     flex-direction: column-reverse;
     justify-content: space-between;
 
@@ -170,7 +218,7 @@ export const RightWrapper = styled.div`
 
       > img {
         width: auto;
-        max-width: 220px;
+        max-width: 150px;
       }
     }
   `}

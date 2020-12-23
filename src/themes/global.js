@@ -20,7 +20,7 @@ body {
   color: #fff;
   font-weight: 500;
   background-color: #D1CFCA;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Nunito', sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 

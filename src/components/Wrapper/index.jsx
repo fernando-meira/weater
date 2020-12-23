@@ -1,11 +1,12 @@
 import React from 'react';
+import { FiSearch } from 'react-icons/fi';
 
-import Search from '../Search';
 import Header from '../Header';
 
 import Snow from '../../themes/assets/snow.svg';
 
 import {
+  Search,
   Climate,
   Container,
   Temperature,
@@ -17,15 +18,21 @@ const Wrapper = ({ climateData }) => {
   return (
     <Container>
       <LeftWrapper>
-        <Search />
+        <Search>
+          <input type="text" placeholder="Pesquisar..." />
+
+          <button type="button">
+            <FiSearch size={24} color="#fff" />
+          </button>
+        </Search>
 
         <Temperature>
           <h1>
-            {climateData?.main?.temp}
+            {parseInt(climateData?.main?.temp, 10)}
             <small>ºC</small>
           </h1>
 
-          {/* <h3>{weather[0].description}</h3> */}
+          <h3>{climateData?.weather?.[0].description}</h3>
 
           <h2>
             {climateData?.name}, {climateData?.sys?.country}
@@ -36,7 +43,7 @@ const Wrapper = ({ climateData }) => {
           <li>
             <p>S. térmica:</p>
 
-            <h2>2ºC</h2>
+            <h2>{`${climateData?.main?.feels_like}ºC`}</h2>
           </li>
 
           <li>
