@@ -20,8 +20,14 @@ import {
 const Main = () => {
   const paramsToFetch = useParams();
 
-  const [climateData, setClimateData] = useState({});
+  const [min, setMin] = useState(0);
+  const [max, setMax] = useState(0);
+  const [place, setPlace] = useState(['------', '--']);
+  const [temperature, setTemperature] = useState(0);
+  const [description, setDescription] = useState('--');
+  const [climateData, setClimateData] = useState(null);
   const [initialPosition, setInitialPosition] = useState([]);
+  const [thermalSensation, setThermalSensation] = useState(0);
 
   const fetchWeater = useCallback(
     async (latitude, longitude) => {
@@ -47,6 +53,15 @@ const Main = () => {
     [paramsToFetch],
   );
 
+  const formatData = useCallback(() => {
+    setTemperature(parseInt(climateData?.main.temp, 10));
+    setDescription(climateData?.weather?.[0].description);
+    setMin(parseFloat(climateData?.main?.temp_min).toFixed(1));
+    setMax(parseFloat(climateData?.main?.temp_max).toFixed(1));
+    setPlace([climateData?.name, climateData?.sys?.country]);
+    setThermalSensation(parseFloat(climateData?.main?.feels_like).toFixed(1));
+  }, [climateData]);
+
   useEffect(() => {
     if (initialPosition) {
       fetchWeater(initialPosition[0], initialPosition[1]);
@@ -60,6 +75,12 @@ const Main = () => {
       setInitialPosition([latitude, longitude]);
     });
   }, []);
+
+  useEffect(() => {
+    if (climateData) {
+      formatData();
+    }
+  }, [climateData, formatData]);
 
   return (
     <Container>
@@ -75,34 +96,32 @@ const Main = () => {
 
           <Temperature>
             <h1>
-              {parseInt(climateData?.main?.temp, 10)}
+              {temperature}
               <small>ºC</small>
             </h1>
 
-            <h3>{climateData?.weather?.[0].description}</h3>
+            <h3>{description}</h3>
 
-            <h2>
-              {climateData?.name}, {climateData?.sys?.country}
-            </h2>
+            <h2>{`${place[0]}, ${place[1]}`}</h2>
           </Temperature>
 
           <Climate>
             <li>
               <p>S. térmica:</p>
 
-              <h2>{`${climateData?.main?.feels_like}ºC`}</h2>
+              <h2>{`${thermalSensation}ºC`}</h2>
             </li>
 
             <li>
               <p>Mínima:</p>
 
-              <h2>{climateData?.main?.temp_min}ºC</h2>
+              <h2>{`${min}ºC`}</h2>
             </li>
 
             <li>
               <p>Máxima:</p>
 
-              <h2>{climateData?.main?.temp_max}ºC</h2>
+              <h2>{`${max}ºC`}</h2>
             </li>
           </Climate>
         </LeftWrapper>
