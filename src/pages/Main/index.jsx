@@ -1,11 +1,21 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import swal from 'sweetalert';
+import { FiSearch } from 'react-icons/fi';
 
 import api from '../../services';
-import { Wrapper } from '../../components';
+import { Header } from '../../components';
+import Snow from '../../themes/assets/snow.svg';
 import { useParams } from '../../hooks/ParamsContext';
 
-import { Container } from './styles';
+import {
+  Search,
+  Wrapper,
+  Climate,
+  Container,
+  Temperature,
+  LeftWrapper,
+  RightWrapper,
+} from './styles';
 
 const Main = () => {
   const paramsToFetch = useParams();
@@ -53,7 +63,58 @@ const Main = () => {
 
   return (
     <Container>
-      <Wrapper climateData={climateData} />
+      <Wrapper>
+        <LeftWrapper>
+          <Search>
+            <input type="text" placeholder="Pesquisar..." />
+
+            <button type="button">
+              <FiSearch size={24} color="#fff" />
+            </button>
+          </Search>
+
+          <Temperature>
+            <h1>
+              {parseInt(climateData?.main?.temp, 10)}
+              <small>ºC</small>
+            </h1>
+
+            <h3>{climateData?.weather?.[0].description}</h3>
+
+            <h2>
+              {climateData?.name}, {climateData?.sys?.country}
+            </h2>
+          </Temperature>
+
+          <Climate>
+            <li>
+              <p>S. térmica:</p>
+
+              <h2>{`${climateData?.main?.feels_like}ºC`}</h2>
+            </li>
+
+            <li>
+              <p>Mínima:</p>
+
+              <h2>{climateData?.main?.temp_min}ºC</h2>
+            </li>
+
+            <li>
+              <p>Máxima:</p>
+
+              <h2>{climateData?.main?.temp_max}ºC</h2>
+            </li>
+          </Climate>
+        </LeftWrapper>
+
+        <RightWrapper>
+          <Header />
+
+          <div>
+            <img src={Snow} alt="snow" />
+          </div>
+        </RightWrapper>
+      </Wrapper>
     </Container>
   );
 };
