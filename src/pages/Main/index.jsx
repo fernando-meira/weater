@@ -22,8 +22,9 @@ const Main = () => {
 
   const [min, setMin] = useState(0);
   const [max, setMax] = useState(0);
-  const [place, setPlace] = useState(['------', '--']);
+  const [atmosphere, setAtmosphere] = useState({});
   const [temperature, setTemperature] = useState(0);
+  const [place, setPlace] = useState(['------', '--']);
   const [description, setDescription] = useState('--');
   const [climateData, setClimateData] = useState(null);
   const [initialPosition, setInitialPosition] = useState([]);
@@ -56,10 +57,15 @@ const Main = () => {
   const formatData = useCallback(() => {
     setTemperature(parseInt(climateData?.main.temp, 10));
     setDescription(climateData?.weather?.[0].description);
+    setPlace([climateData?.name, climateData?.sys?.country]);
     setMin(parseFloat(climateData?.main?.temp_min).toFixed(1));
     setMax(parseFloat(climateData?.main?.temp_max).toFixed(1));
-    setPlace([climateData?.name, climateData?.sys?.country]);
     setThermalSensation(parseFloat(climateData?.main?.feels_like).toFixed(1));
+    setAtmosphere({
+      humidity: climateData?.main?.humidity,
+      clouds: climateData?.clouds?.all,
+      wind: parseFloat(climateData?.wind?.speed).toFixed(1),
+    });
   }, [climateData]);
 
   useEffect(() => {
@@ -127,7 +133,7 @@ const Main = () => {
         </LeftWrapper>
 
         <RightWrapper>
-          <Header />
+          <Header atmosphere={atmosphere} />
 
           <div>
             <img src={Snow} alt="snow" />

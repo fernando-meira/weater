@@ -175,8 +175,6 @@ export const Climate = styled.ul`
     list-style: none;
 
     p {
-      margin-bottom: 30px;
-
       font-weight: 200;
     }
   }
@@ -184,8 +182,6 @@ export const Climate = styled.ul`
   ${media.lessThan('large')`
     li {
       p {
-        margin-bottom: 0;
-
         font-size: 16px;
       }
 

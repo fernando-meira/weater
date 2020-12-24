@@ -3,21 +3,21 @@ import { FiDroplet, FiWind, FiUmbrella } from 'react-icons/fi';
 
 import { Container } from './styles';
 
-const Header = () => {
+const Header = ({ atmosphere }) => {
   const itemsToList = [
     {
       label: 'Umidade:',
-      value: '69%',
+      value: `${atmosphere.humidity}%`,
       icon: <FiDroplet color="#16c5bf" size={30} />,
     },
     {
       label: 'Vento:',
-      value: '13 km/h',
+      value: `${atmosphere.wind}km/h`,
       icon: <FiWind color="#fff" size={30} />,
     },
     {
       label: 'Chuva:',
-      value: '41%',
+      value: `${atmosphere.clouds}%`,
       icon: <FiUmbrella color="#fff" size={30} />,
     },
   ];
