@@ -32,23 +32,40 @@ const Main = () => {
 
   const fetchWeater = useCallback(
     async (latitude, longitude) => {
-      try {
-        const { data } = await api.get('weather', {
-          params: {
-            ...paramsToFetch,
-            q: 'Itapetininga',
-            lat: latitude,
-            lon: longitude,
-          },
-        });
+      if (latitude && longitude) {
+        try {
+          const { data } = await api.get('weather', {
+            params: {
+              ...paramsToFetch,
+              lat: latitude,
+              lon: longitude,
+            },
+          });
 
-        setClimateData(data);
-      } catch (error) {
-        swal(
-          'Opa, algo de errado!',
-          'Se o erro persistir contate-nos!',
-          'error',
-        );
+          setClimateData(data);
+        } catch (error) {
+          swal(
+            'Opa, algo de errado!',
+            'Se o erro persistir contate-nos!',
+            'error',
+          );
+        }
+      } else {
+        try {
+          const { data } = await api.get('weather', {
+            params: {
+              ...paramsToFetch,
+              q: 'São Paulo',
+            },
+          });
+          setClimateData(data);
+        } catch (error) {
+          swal(
+            'Opa, algo de errado!',
+            'Se o erro persistir contate-nos!',
+            'error',
+          );
+        }
       }
     },
     [paramsToFetch],
