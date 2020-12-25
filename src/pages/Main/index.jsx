@@ -22,6 +22,7 @@ const Main = () => {
 
   const [min, setMin] = useState(0);
   const [max, setMax] = useState(0);
+  const [city, setCity] = useState('São Paulo');
   const [atmosphere, setAtmosphere] = useState({});
   const [temperature, setTemperature] = useState(0);
   const [place, setPlace] = useState(['------', '--']);
@@ -55,7 +56,7 @@ const Main = () => {
           const { data } = await api.get('weather', {
             params: {
               ...paramsToFetch,
-              q: 'São Paulo',
+              q: city,
             },
           });
           setClimateData(data);
@@ -68,7 +69,7 @@ const Main = () => {
         }
       }
     },
-    [paramsToFetch],
+    [city, paramsToFetch],
   );
 
   const formatData = useCallback(() => {
@@ -84,6 +85,15 @@ const Main = () => {
       wind: parseFloat(climateData?.wind?.speed).toFixed(1),
     });
   }, [climateData]);
+
+  const handleSearch = useCallback(
+    e => {
+      e.preventDefault();
+
+      fetchWeater();
+    },
+    [fetchWeater],
+  );
 
   useEffect(() => {
     if (initialPosition) {
@@ -109,10 +119,14 @@ const Main = () => {
     <Container>
       <Wrapper>
         <LeftWrapper>
-          <Search>
-            <input type="text" placeholder="Pesquisar..." />
+          <Search onSubmit={handleSearch}>
+            <input
+              type="text"
+              placeholder="Pesquisar..."
+              onChange={text => setCity(text.target.value)}
+            />
 
-            <button type="button">
+            <button type="submit">
               <FiSearch size={24} color="#fff" />
             </button>
           </Search>

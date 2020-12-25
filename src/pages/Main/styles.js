@@ -57,7 +57,7 @@ export const LeftWrapper = styled.div`
   `}
 `;
 
-export const Search = styled.header`
+export const Search = styled.form`
   display: flex;
   align-items: center;
 
