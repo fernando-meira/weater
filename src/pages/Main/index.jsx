@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import swal from 'sweetalert';
 import { FiSearch } from 'react-icons/fi';
+import { toast, ToastContainer, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import api from '../../services';
 import { Header } from '../../components';
@@ -31,7 +33,9 @@ const Main = () => {
   const [initialPosition, setInitialPosition] = useState([]);
   const [thermalSensation, setThermalSensation] = useState(0);
 
-  const fetchWeater = useCallback(
+  const handleToastView = message => toast.dark(message);
+
+  const fetchForGeolocation = useCallback(
     async (latitude, longitude) => {
       if (latitude && longitude) {
         try {
@@ -45,32 +49,26 @@ const Main = () => {
 
           setClimateData(data);
         } catch (error) {
-          swal(
-            'Opa, algo de errado!',
-            'Se o erro persistir contate-nos!',
-            'error',
-          );
-        }
-      } else {
-        try {
-          const { data } = await api.get('weather', {
-            params: {
-              ...paramsToFetch,
-              q: city,
-            },
-          });
-          setClimateData(data);
-        } catch (error) {
-          swal(
-            'Opa, algo de errado!',
-            'Se o erro persistir contate-nos!',
-            'error',
-          );
+          handleToastView();
         }
       }
     },
-    [city, paramsToFetch],
+    [paramsToFetch],
   );
+
+  const fetchWeater = useCallback(async () => {
+    try {
+      const { data } = await api.get('weather', {
+        params: {
+          ...paramsToFetch,
+          q: city,
+        },
+      });
+      setClimateData(data);
+    } catch (error) {
+      handleToastView(error.response.data.message);
+    }
+  }, [city, paramsToFetch]);
 
   const formatData = useCallback(() => {
     setTemperature(parseInt(climateData?.main.temp, 10));
@@ -97,9 +95,9 @@ const Main = () => {
 
   useEffect(() => {
     if (initialPosition) {
-      fetchWeater(initialPosition[0], initialPosition[1]);
+      fetchForGeolocation(initialPosition[0], initialPosition[1]);
     }
-  }, [fetchWeater, initialPosition]);
+  }, [fetchForGeolocation, initialPosition]);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(position => {
@@ -141,6 +139,19 @@ const Main = () => {
 
             <h2>{`${place[0]}, ${place[1]}`}</h2>
           </Temperature>
+
+          <ToastContainer
+            draggable
+            rtl={false}
+            pauseOnHover
+            closeOnClick
+            hideProgressBar
+            pauseOnFocusLoss
+            autoClose={3000}
+            transition={Slide}
+            newestOnTop={false}
+            position={window.innerWidth >= 1024 ? 'top-right' : 'top-center'}
+          />
 
           <Climate>
             <li>

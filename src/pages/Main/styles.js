@@ -14,6 +14,22 @@ export const Container = styled.main`
   background-repeat: no-repeat;
   background-position: center top;
   background-image: url(${mobileBackground});
+
+  .Toastify__toast--dark {
+    border-radius: 4px;
+
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  ${media.lessThan('large')`
+    .Toastify__toast--dark {
+      width: 90%;
+      border-radius: 16px;
+
+      background-color: rgba(0, 0, 0, 0.9)
+    }
+  `}
 `;
 
 export const Wrapper = styled.div`
