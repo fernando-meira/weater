@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import swal from 'sweetalert';
 import { FiSearch } from 'react-icons/fi';
 import { toast, ToastContainer, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -24,7 +23,7 @@ const Main = () => {
 
   const [min, setMin] = useState(0);
   const [max, setMax] = useState(0);
-  const [city, setCity] = useState('São Paulo');
+  const [city, setCity] = useState('');
   const [atmosphere, setAtmosphere] = useState({});
   const [temperature, setTemperature] = useState(0);
   const [place, setPlace] = useState(['------', '--']);
@@ -65,6 +64,7 @@ const Main = () => {
         },
       });
       setClimateData(data);
+      setCity('');
     } catch (error) {
       handleToastView(error.response.data.message);
     }
@@ -120,6 +120,7 @@ const Main = () => {
           <Search onSubmit={handleSearch}>
             <input
               type="text"
+              value={city}
               placeholder="Pesquisar..."
               onChange={text => setCity(text.target.value)}
             />
