@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/fernando-meira/NextLevelWeek02/blob/master/web/src/themes/assets/images/imgReadme.png" >
+  <img src="https://github.com/fernando-meira/weater/blob/master/src/themes/assets/svg/imgReadme.svg" >
 </div>
 
 # Projeto
