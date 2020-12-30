@@ -7,7 +7,6 @@ import api from '../../services';
 import { Header } from '../../components';
 import {
   sunny,
-  sunIcon,
   snowIcon,
   rainIcon,
   stormIcon,
@@ -49,7 +48,7 @@ const Main = () => {
   });
 
   let background = sunshineBackground;
-  let iconWeather = sunIcon;
+  let iconWeather = sunny;
 
   switch (weater) {
     case 'Thunderstorm':
@@ -94,7 +93,7 @@ const Main = () => {
       break;
   }
 
-  const handleToastView = message => toast.dark(message);
+  const handleToastView = message => toast.dark(message.toUpperCase());
 
   const fetchForGeolocation = useCallback(
     async (latitude, longitude) => {

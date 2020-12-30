@@ -2,7 +2,6 @@ import hot from './svg/hot.svg';
 import cold from './svg/cold.svg';
 import night from './svg/night.svg';
 import sunny from './svg/sunny.svg';
-import sunIcon from './png/sunIcon.png';
 import rainIcon from './svg/rainIcon.svg';
 import snowIcon from './svg/snowIcon.svg';
 import stormIcon from './svg/stormIcon.svg';
@@ -18,7 +17,6 @@ export {
   cold,
   night,
   sunny,
-  sunIcon,
   snowIcon,
   rainIcon,
   stormIcon,

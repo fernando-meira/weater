@@ -228,6 +228,8 @@ export const RightWrapper = styled.div`
     > img {
       width: auto;
       max-width: 250px;
+
+      filter: drop-shadow(2px 4px 6px white);
     }
   }
 
