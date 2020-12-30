@@ -5,7 +5,12 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import api from '../../services';
 import { Header } from '../../components';
-import Snow from '../../themes/assets/snow.svg';
+import {
+  sunIcon,
+  snowIcon,
+  snowBackground,
+  sunshineBackground,
+} from '../../themes/assets';
 import { useParams } from '../../hooks/ParamsContext';
 
 import {
@@ -24,13 +29,42 @@ const Main = () => {
   const [min, setMin] = useState(0);
   const [max, setMax] = useState(0);
   const [city, setCity] = useState('');
-  const [atmosphere, setAtmosphere] = useState({});
+  const [weater, setWeater] = useState('Snow');
   const [temperature, setTemperature] = useState(0);
   const [place, setPlace] = useState(['------', '--']);
   const [description, setDescription] = useState('--');
   const [climateData, setClimateData] = useState(null);
   const [initialPosition, setInitialPosition] = useState([]);
   const [thermalSensation, setThermalSensation] = useState(0);
+  const [atmosphere, setAtmosphere] = useState({
+    humidity: 0,
+    clouds: 0,
+    wind: 0,
+  });
+
+  let background = sunshineBackground;
+  let iconWeather = sunIcon;
+
+  switch (weater) {
+    case 'Thunderstorm':
+      background = sunshineBackground;
+      iconWeather = sunIcon;
+
+      break;
+
+    case 'Clear':
+      background = sunshineBackground;
+      break;
+
+    case 'Snow':
+      background = snowBackground;
+      iconWeather = snowIcon;
+      break;
+
+    default:
+      background = sunshineBackground;
+      break;
+  }
 
   const handleToastView = message => toast.dark(message);
 
@@ -71,6 +105,7 @@ const Main = () => {
   }, [city, paramsToFetch]);
 
   const formatData = useCallback(() => {
+    setWeater(climateData?.weather?.[0].main);
     setTemperature(parseInt(climateData?.main.temp, 10));
     setDescription(climateData?.weather?.[0].description);
     setPlace([climateData?.name, climateData?.sys?.country]);
@@ -114,7 +149,7 @@ const Main = () => {
   }, [climateData, formatData]);
 
   return (
-    <Container>
+    <Container background={background}>
       <Wrapper>
         <LeftWrapper>
           <Search onSubmit={handleSearch}>
@@ -179,7 +214,7 @@ const Main = () => {
           <Header atmosphere={atmosphere} />
 
           <div>
-            <img src={Snow} alt="snow" />
+            <img src={iconWeather} alt="snow" />
           </div>
         </RightWrapper>
       </Wrapper>

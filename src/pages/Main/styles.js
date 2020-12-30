@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import media from 'styled-media-query';
 
-import mobileBackground from '../../themes/assets/mobileObjects.svg';
+import { sunshineBackground } from '../../themes/assets';
 
 export const Container = styled.main`
   height: 100vh;
@@ -13,7 +13,10 @@ export const Container = styled.main`
   background-size: 100% auto;
   background-repeat: no-repeat;
   background-position: center top;
-  background-image: url(${mobileBackground});
+
+  /* background-image: url(${sunshineBackground}); */
+  background-image: ${({ background }) =>
+    background ? `url(${background})` : `url(${sunshineBackground})`};
 
   .Toastify__toast--dark {
     border-radius: 4px;
