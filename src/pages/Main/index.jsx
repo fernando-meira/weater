@@ -6,9 +6,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import api from '../../services';
 import { Header } from '../../components';
 import {
+  sunny,
   sunIcon,
   snowIcon,
+  rainIcon,
+  stormIcon,
+  cloudyDayIcon,
   snowBackground,
+  rainyBackground,
+  cloudyBackground,
   sunshineBackground,
 } from '../../themes/assets';
 import { useParams } from '../../hooks/ParamsContext';
@@ -47,22 +53,44 @@ const Main = () => {
 
   switch (weater) {
     case 'Thunderstorm':
-      background = sunshineBackground;
-      iconWeather = sunIcon;
+      background = rainyBackground;
+      iconWeather = stormIcon;
 
       break;
 
-    case 'Clear':
-      background = sunshineBackground;
+    case 'Drizzle':
+      background = rainyBackground;
+      iconWeather = rainIcon;
+
+      break;
+
+    case 'Rain':
+      background = rainyBackground;
+      iconWeather = rainIcon;
+
       break;
 
     case 'Snow':
       background = snowBackground;
       iconWeather = snowIcon;
+
+      break;
+
+    case 'Clouds':
+      background = cloudyBackground;
+      iconWeather = cloudyDayIcon;
+
+      break;
+
+    case 'Clear':
+      background = sunshineBackground;
+      iconWeather = sunny;
+
       break;
 
     default:
       background = sunshineBackground;
+      iconWeather = sunny;
       break;
   }
 
