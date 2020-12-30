@@ -241,7 +241,7 @@ const Main = () => {
           <Header atmosphere={atmosphere} />
 
           <div>
-            <img src={iconWeather} alt="snow" />
+            <img src={iconWeather} alt="iconWeater" />
           </div>
         </RightWrapper>
       </Wrapper>
