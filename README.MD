@@ -2,6 +2,8 @@
   <img src="https://github.com/fernando-meira/weater/blob/master/src/themes/assets/svg/imgReadme.svg" >
 </div>
 
+<h1 align="center">WEATER</h1>
+
 # Projeto
 
 O Projeto nomeado **WEATER** é uma aplicação web desenvolvida para obter informações climaticas de diversas regiões utilizando a api pública [openweathermap](https://openweathermap.org/). O projeto foi hospedado na [Netlify](https://www.netlify.com/) e alguns assets foram encontrados no site [Freepik](https://www.freepik.com/).
