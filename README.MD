@@ -16,7 +16,7 @@ Projeto idealizado e desenvolvido durante o recesso de dezembro, entre 24/12/202
 
 ### Melhorias
 
-- O projeto poderá receber melhorias constantes.
+- O projeto poderá receber melhorias constantes como autocomplete de busca e outras coisas mais.
 
 ## Starting locally
 
