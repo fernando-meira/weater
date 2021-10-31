@@ -10,7 +10,7 @@ O Projeto nomeado **WEATER** é uma aplicação web desenvolvida para obter info
 
 Projeto idealizado e desenvolvido durante o recesso de dezembro, entre 24/12/2020 e 29/12/2020.
 
-## Demo
+## Demonstração
 
 - [Climate](http://climated.netlify.app/)
 
